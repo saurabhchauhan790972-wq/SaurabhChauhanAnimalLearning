@@ -336,25 +336,42 @@ animals.forEach(function(animal){
     let card = document.createElement("div");
     card.className = "card";
 
- card.innerHTML = `
-${animal.name === "Lion" ? `
+if(animal.name=="Lion"){
+
+card.innerHTML=`
 <video
 src="${animal.image}"
 autoplay
 loop
 muted
 playsinline
-style="width:100%;height:160px;object-fit:cover;border-radius:15px;">
+preload="auto"
+style="width:100%;
+height:220px;
+object-fit:contain;
+border-radius:15px;
+background:white;">
 </video>
-` : `
-<img
-src="${animal.image}"
-style="width:100%;height:160px;object-fit:cover;border-radius:15px;">
-`}
 
 <h2>${animal.name}</h2>
 `;
-Your fi
+
+}
+else{
+
+card.innerHTML=`
+<img
+src="${animal.image}"
+style="width:100%;
+height:160px;
+object-fit:cover;
+border-radius:15px;">
+
+<h2>${animal.name}</h2>
+`;
+
+}
+
 
     card.addEventListener("click", function () {
         playAnimal(animal, card);
