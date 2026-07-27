@@ -67,8 +67,7 @@ transition:.3s;
 .card:active{
 transform:scale(.95);
 }
-
-.card img{
+.card video{
 width:100%;
 height:130px;
 object-fit:cover;
@@ -158,7 +157,7 @@ transition:.3s;
 transform:scale(1.08);
 }
 
-.card img{
+.card video{
 width:160px;
 height:160px;
 object-fit:cover;
@@ -337,19 +336,25 @@ animals.forEach(function(animal){
     let card = document.createElement("div");
     card.className = "card";
 
-    card.innerHTML = `
-        <video
-            src="${animal.image}"
-            autoplay
-            loop
-            muted
-            playsinline
-            width="100%"
-            height="160">
-        </video>
+ card.innerHTML = `
+${animal.name === "Lion" ? `
+<video
+src="${animal.image}"
+autoplay
+loop
+muted
+playsinline
+style="width:100%;height:160px;object-fit:cover;border-radius:15px;">
+</video>
+` : `
+<img
+src="${animal.image}"
+style="width:100%;height:160px;object-fit:cover;border-radius:15px;">
+`}
 
-        <h2>${animal.name}</h2>
-    `;
+<h2>${animal.name}</h2>
+`;
+Your fi
 
     card.addEventListener("click", function () {
         playAnimal(animal, card);
