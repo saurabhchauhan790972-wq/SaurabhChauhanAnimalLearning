@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kids Animal Learning</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#E3F2FD;
+max-width:430px;
+margin:auto;
+min-height:100vh;
+}
+
+.header{
+background:#2196F3;
+color:white;
+padding:15px;
+font-size:28px;
+font-weight:bold;
+text-align:center;
+border-bottom-left-radius:20px;
+border-bottom-right-radius:20px;
+box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+
+#animalName{
+margin:15px;
+font-size:32px;
+font-weight:bold;
+color:#FF5722;
+text-align:center;
+}
+
+#grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+padding:12px;
+}
+
+.card{
+background:white;
+border-radius:18px;
+padding:10px;
+text-align:center;
+box-shadow:0 4px 10px rgba(0,0,0,.2);
+transition:.3s;
+}
+
+.card:active{
+transform:scale(.95);
+}
+
+.card img{
+width:100%;
+height:130px;
+object-fit:cover;
+border-radius:12px;
+}
+
+.card h2{
+margin-top:8px;
+font-size:20px;
+color:#333;
+}
+
+.bottom{
+position:fixed;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+width:100%;
+max-width:430px;
+display:flex;
+justify-content:space-around;
+background:white;
+padding:12px;
+box-shadow:0 -3px 10px rgba(0,0,0,.2);
+}
+
+.bottom button{
+width:90px;
+height:45px;
+border:none;
+border-radius:10px;
+font-size:16px;
+background:#2196F3;
+color:white;
+}
+
+.bottom button:active{
+transform:scale(.95);
+}
+
+@media(min-width:768px){
+
+body{
+max-width:700px;
+}
+
+#grid{
+grid-template-columns:repeat(4,1fr);
+}
+
+.card img{
+height:170px;
+}
+
+}
+h1{
+color:#fff;
+font-size:40px;
+margin-bottom:20px;
+text-shadow:2px 2px 5px black;
+}
+
+#animalName{
+font-size:42px;
+font-weight:bold;
+color:#ff0000;
+margin:20px;
+height:50px;
+}
+
+#grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+border-radius:20px;
+padding:10px;
+cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
+transition:.3s;
+}
+
+.card:hover{
+transform:scale(1.08);
+}
+
+.card img{
+width:160px;
+height:160px;
+object-fit:cover;
+border-radius:15px;
+}
+
+.card h2{
+margin-top:10px;
+font-size:24px;
+color:#333;
+}
+
+.bounce{
+animation:bounce .5s;
+}
+
+@keyframes bounce{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.2);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🐾 Kids Animal Learning 🐾</h1>
+
+<div id="animalName">
+Click Any Animal
+</div>
+
+<div id="grid"></div>
+
+<script>
+
+const animals=[
+
+{
+name:"Lion",
+image:"images/lion.jpg",
+sound:"sounds/lion.mp3"
+},
+
+{
+name:"Tiger",
+image:"images/tiger.jpg",
+sound:"sounds/tiger.mp3"
+},
+
+{
+name:"Elephant",
+image:"images/elephant.jpg",
+sound:"sounds/elephant.mp3"
+},
+
+{
+name:"Dog",
+image:"images/dog.jpg",
+sound:"sounds/dog.mp3"
+},
+
+{
+name:"Cat",
+image:"images/cat.jpg",
+sound:"sounds/cat.mp3"
+},
+
+{
+name:"Cow",
+image:"images/cow.jpg",
+sound:"sounds/cow.mp3"
+},
+
+{
+name:"Horse",
+image:"images/horse.jpg",
+sound:"sounds/horse.mp3"
+},
+
+{
+name:"Goat",
+image:"images/goat.jpg",
+sound:"sounds/goat.mp3"
+},
+
+{
+name:"Sheep",
+image:"images/sheep.jpg",
+sound:"sounds/sheep.mp3"
+},
+
+{
+name:"Monkey",
+image:"images/monkey.jpg",
+sound:"sounds/monkey.mp3"
+},
+{
+name:"Bear",
+image:"images/bear.jpg",
+sound:"sounds/bear.mp3"
+},
+
+{
+name:"Fox",
+image:"images/fox.jpg",
+sound:"sounds/fox.mp3"
+},
+
+{
+name:"Wolf",
+image:"images/wolf.jpg",
+sound:"sounds/wolf.mp3"
+},
+
+{
+name:"Rabbit",
+image:"images/rabbit.jpg",
+sound:"sounds/rabbit.mp3"
+},
+
+{
+name:"Camel",
+image:"images/camel.jpg",
+sound:"sounds/camel.mp3"
+},
+
+{
+name:"Giraffe",
+image:"images/giraffe.jpg",
+sound:"sounds/giraffe.mp3"
+},
+
+{
+name:"Zebra",
+image:"images/zebra.jpg",
+sound:"sounds/zebra.mp3"
+},
+
+{
+name:"Duck",
+image:"images/duck.jpg",
+sound:"sounds/duck.mp3"
+},
+
+{
+name:"Chicken",
+image:"images/chicken.jpg",
+sound:"sounds/chicken.mp3"
+},
+
+{
+name:"Deer",
+image:"images/deer.jpg",
+sound:"sounds/deer.mp3"
+}
+
+];
+
+const grid=document.getElementById("grid");
+
+animals.forEach(function(animal){
+
+let card=document.createElement("div");
+card.className="card";
+
+card.innerHTML=`
+<img src="${animal.image}" alt="${animal.name}">
+<h2>${animal.name}</h2>
+`;
+
+card.addEventListener("click",function(){
+
+playAnimal(animal,card);
+
+});
+
+grid.appendChild(card);
+
+});
+
+function playAnimal(animal, card){
+
+    document.getElementById("animalName").innerHTML = animal.name;
+
+    let audio = new Audio(animal.sound);
+
+    audio.play()
+    .then(function(){
+        console.log("Audio Played");
+    })
+    .catch(function(err){
+        alert("Error: " + err);
+    });
+
+    speechSynthesis.cancel();
+
+    speechSynthesis.speak(new SpeechSynthesisUtterance(animal.name));
+}
+// ---------- OPTIONAL AUTO PLAY FEATURE ----------
+
+let currentIndex = 0;
+
+function playCurrentAnimal() {
+
+    playAnimal(animals[currentIndex], document.getElementsByClassName("card")[currentIndex]);
+
+}
+
+function nextAnimal() {
+
+    currentIndex++;
+
+    if (currentIndex >= animals.length) {
+        currentIndex = 0;
+    }
+
+    playCurrentAnimal();
+
+}
+
+function previousAnimal() {
+
+    currentIndex--;
+
+    if (currentIndex < 0) {
+        currentIndex = animals.length - 1;
+    }
+
+    playCurrentAnimal();
+
+}
+
+function autoPlayAnimals() {
+
+    currentIndex = 0;
+
+    playCurrentAnimal();
+
+    setInterval(function () {
+
+        currentIndex++;
+
+        if (currentIndex >= animals.length) {
+            currentIndex = 0;
+        }
+
+        playCurrentAnimal();
+
+    }, 5000);
+
+}
+
+</script>
+
+<br><br>
+
+<button onclick="previousAnimal()" style="padding:15px 30px;font-size:20px;border:none;border-radius:10px;background:#ff9800;color:white;cursor:pointer;margin:10px;">
+⏮ Previous
+</button>
+
+<button onclick="nextAnimal()" style="padding:15px 30px;font-size:20px;border:none;border-radius:10px;background:#4CAF50;color:white;cursor:pointer;margin:10px;">
+⏭ Next
+</button>
+
+<button onclick="autoPlayAnimals()" style="padding:15px 30px;font-size:20px;border:none;border-radius:10px;background:#2196F3;color:white;cursor:pointer;margin:10px;">
+▶ Auto Play
+</button>
+
+</body>
+</html>
