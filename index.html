@@ -219,7 +219,7 @@ sound:"sounds/lion.mp3"
 
 {
 name:"Tiger",
-image:"images/tiger.jpg",
+image:"images/tiger.mp4",
 sound:"sounds/tiger.mp3"
 },
 
@@ -339,7 +339,7 @@ animals.forEach(function(animal){
     let card = document.createElement("div");
     card.className = "card";
 
-if(animal.name=="Lion"){
+if(animal.name=="Lion" || animal.name=="Tiger"){
 
 card.innerHTML=`
 <video
