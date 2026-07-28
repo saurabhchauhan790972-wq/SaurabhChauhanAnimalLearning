@@ -219,7 +219,7 @@ sound:"sounds/lion.mp3"
 
 {
 name:"Tiger",
-image:"images/tiger.mp4",
+image:"videos/tiger.mp4",
 sound:"sounds/tiger.mp3"
 },
 
@@ -334,47 +334,51 @@ sound:"sounds/deer.mp3"
 
 const grid = document.getElementById("grid");
 
+
 animals.forEach(function(animal){
 
     let card = document.createElement("div");
     card.className = "card";
 
-if(animal.name=="Lion" || animal.name=="Tiger"){
+    // Check whether the file is a video
+    if(animal.image.toLowerCase().endsWith(".mp4")){
 
-card.innerHTML=`
-<video
-src="${animal.image}"
-autoplay
-loop
-muted
-playsinline
-preload="auto"
-style="width:100%;
-height:220px;
-object-fit:contain;
-border-radius:15px;
-background:white;">
-</video>
+        card.innerHTML = `
+        <video
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            style="width:100%;
+                   height:220px;
+                   object-fit:contain;
+                   border-radius:15px;
+                   background:white;">
 
-<h2>${animal.name}</h2>
-`;
+            <source src="${animal.image}" type="video/mp4">
 
-}
-else{
+            Your browser does not support the video tag.
 
-card.innerHTML=`
-<img
-src="${animal.image}"
-style="width:100%;
-height:160px;
-object-fit:cover;
-border-radius:15px;">
+        </video>
 
-<h2>${animal.name}</h2>
-`;
+        <h2>${animal.name}</h2>
+        `;
 
-}
+    }else{
 
+        card.innerHTML = `
+        <img
+            src="${animal.image}"
+            style="width:100%;
+                   height:160px;
+                   object-fit:cover;
+                   border-radius:15px;">
+
+        <h2>${animal.name}</h2>
+        `;
+
+    }
 
     card.addEventListener("click", function () {
         playAnimal(animal, card);
@@ -384,6 +388,7 @@ border-radius:15px;">
 
 });
 
+    
 function playAnimal(animal, card){
 
     document.getElementById("animalName").innerHTML = animal.name;
